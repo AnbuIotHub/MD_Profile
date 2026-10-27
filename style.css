@@ -1,0 +1,521 @@
+
+/* =========================================
+   1. GLOBAL SETTINGS
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --accent: #22d9ee;
+    --background: #050708;
+    --card-background: #0b1010;
+    --text: #f5f8f8;
+    --muted: #8d999b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Inter', Arial, sans-serif;
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(34, 217, 238, 0.09),
+            transparent 45%
+        ),
+        var(--background);
+    color: var(--text);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 15px;
+}
+
+
+/* =========================================
+   2. PAGE LAYOUT
+========================================= */
+
+.page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================================
+   3. MAIN DIGITAL CARD
+========================================= */
+
+.digital-card {
+    width: 100%;
+    max-width: 565px;
+
+    padding: 45px 35px 35px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    background: linear-gradient(
+        145deg,
+        #0d1313,
+        #070a0a
+    );
+
+    border: 1px solid rgba(34, 217, 238, 0.7);
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 20px rgba(34, 217, 238, 0.08),
+        inset 0 0 25px rgba(34, 217, 238, 0.025);
+
+    animation:
+        cardEntrance 1s ease-out both,
+        neonGlow 4s ease-in-out 1s infinite;
+}
+
+
+/* =========================================
+   4. CARD ENTRANCE ANIMATION
+========================================= */
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================
+   5. NEON BORDER ANIMATION
+========================================= */
+
+@keyframes neonGlow {
+    0%, 100% {
+        border-color: rgba(34, 217, 238, 0.5);
+
+        box-shadow:
+            0 0 12px rgba(34, 217, 238, 0.08),
+            inset 0 0 20px rgba(34, 217, 238, 0.02);
+    }
+
+    50% {
+        border-color: var(--accent);
+
+        box-shadow:
+            0 0 25px rgba(34, 217, 238, 0.22),
+            0 0 45px rgba(34, 217, 238, 0.07),
+            inset 0 0 25px rgba(34, 217, 238, 0.04);
+    }
+}
+
+
+/* =========================================
+   6. PROFILE PHOTO FRAME
+========================================= */
+
+.portrait-frame {
+    width: 245px;
+    height: 280px;
+
+    position: relative;
+    margin-bottom: 35px;
+
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+
+    background: #141a1b;
+
+    box-shadow:
+        0 0 15px rgba(34, 217, 238, 0.22);
+
+    transform: rotate(4deg);
+
+    animation: floatPhoto 4s ease-in-out infinite;
+}
+
+
+/* Decorative frame behind photo */
+
+.portrait-frame::before {
+    content: "";
+
+    position: absolute;
+    inset: 8px -10px -8px 10px;
+
+    border: 1px solid rgba(34, 217, 238, 0.4);
+    border-radius: 14px;
+
+    background: rgba(34, 217, 238, 0.04);
+
+    z-index: -1;
+}
+
+
+/* Profile image */
+
+.portrait {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center 22%;
+
+    border-radius: 11px;
+}
+
+
+/* =========================================
+   7. FLOATING PHOTO ANIMATION
+========================================= */
+
+@keyframes floatPhoto {
+    0%, 100% {
+        translate: 0 0;
+    }
+
+    50% {
+        translate: 0 -8px;
+    }
+}
+
+
+/* =========================================
+   8. NAME AND JOB TITLE
+========================================= */
+
+.identity {
+    width: 100%;
+    text-align: center;
+}
+
+.identity h1 {
+    font-size: clamp(28px, 5vw, 36px);
+    font-weight: 800;
+
+    letter-spacing: 1px;
+    line-height: 1.3;
+
+    color: #ffffff;
+}
+
+.identity h1 span {
+    color: var(--accent);
+
+    text-shadow:
+        0 0 10px rgba(34, 217, 238, 0.35);
+}
+
+.role {
+    margin-top: 8px;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    color: var(--accent);
+}
+
+
+/* =========================================
+   9. ANIMATED ACCENT LINE
+========================================= */
+
+.accent-line {
+    width: 110px;
+    height: 3px;
+
+    margin: 18px auto 22px;
+
+    border-radius: 50px;
+    background: var(--accent);
+
+    animation: linePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes linePulse {
+    0%, 100% {
+        opacity: 0.65;
+        transform: scaleX(0.85);
+        box-shadow: 0 0 5px var(--accent);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scaleX(1);
+        box-shadow: 0 0 16px var(--accent);
+    }
+}
+
+
+/* =========================================
+   10. CONTACT DETAILS
+========================================= */
+
+.contact-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-row {
+    min-height: 52px;
+
+    padding: 12px 15px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    text-decoration: none;
+    color: #edf4f4;
+
+    background: #202626;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+
+    animation: contactEntrance 0.8s ease-out both;
+}
+
+.contact-row:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.contact-row:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+@keyframes contactEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Contact icons */
+
+.contact-icon {
+    min-width: 24px;
+
+    color: var(--accent);
+    font-size: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Contact text */
+
+.contact-text {
+    font-size: 14px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Contact hover effect */
+
+.contact-row:hover {
+    transform: translateY(-3px);
+
+    background: #273031;
+
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 15px rgba(34, 217, 238, 0.12);
+}
+
+
+/* =========================================
+   11. SOCIAL MEDIA SECTION
+========================================= */
+
+.social-section {
+    width: 100%;
+
+    margin-top: 25px;
+    text-align: center;
+}
+
+.social-heading {
+    margin-bottom: 15px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+
+/* Social icon container */
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+/* Social buttons */
+
+.social-button {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #171d1e;
+
+    border: 1px solid #303839;
+    border-radius: 12px;
+
+    color: #a0acad;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Social hover animation */
+
+.social-button:hover {
+    color: var(--accent);
+
+    border-color: var(--accent);
+
+    transform: translateY(-5px) scale(1.08);
+
+    box-shadow:
+        0 0 18px rgba(34, 217, 238, 0.25);
+}
+
+
+/* =========================================
+   12. FOOTER
+========================================= */
+
+.page-note {
+    margin-top: 18px;
+
+    color: #657072;
+
+    font-size: 11px;
+    text-align: center;
+}
+
+
+/* =========================================
+   13. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 18px 12px;
+    }
+
+    .digital-card {
+        padding: 35px 20px 30px;
+        border-radius: 22px;
+    }
+
+    .portrait-frame {
+        width: 205px;
+        height: 240px;
+
+        margin-bottom: 30px;
+    }
+
+    .identity h1 {
+        font-size: 29px;
+    }
+
+    .role {
+        font-size: 16px;
+    }
+
+    .contact-row {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .contact-text {
+        font-size: 12px;
+    }
+
+    .social-button {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+
+/* =========================================
+   14. ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
